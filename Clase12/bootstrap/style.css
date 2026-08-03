@@ -1,0 +1,18 @@
+.card-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    max-width: 900px;
+    margin: auto;
+}
+
+.card{
+    width: 18rem;
+}
+
+.carousel-item img{
+    max-height: 600px;
+}
