@@ -104,3 +104,9 @@ function mostrarLista(contenedor, elementos, mensajeVacio){
         contenedor.appendChild(li);
     })
 }
+
+// 4. Función mostrarCatalogo()
+// Dibujar en la página la tabla del catálogo a partir del array productos.
+function mostrarCatalogo(){
+
+}
