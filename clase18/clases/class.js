@@ -4,6 +4,8 @@ const listItem = document.getElementsByClassName("list-item");
  const texto = document.querySelector(".texto");
 const contenedor = document.querySelector(".contenedor-magico");
 const itemEspecial = document.getElementById("item-especial");
+const ogText = itemEspecial.textContent;
+let cont = 0;
 
 // Crear elemento al final de la lista
  function crearElementoListaFinal(){
@@ -23,6 +25,14 @@ const itemEspecial = document.getElementById("item-especial");
 // - Toggle de atributo
 function agregarAtributoToggle(){
     itemEspecial.classList.toggle('rojo');
+    if(cont === 0) {
+        itemEspecial.textContent = "Soy Rojo";
+        cont++;
+    }
+    else{
+        itemEspecial.textContent = ogText;
+        cont = 0;
+    }
 }
 
 // - Remover una clase
@@ -33,5 +43,24 @@ function removerClaseVerde(){
 // - Quitar todas las clases (atributo)
 function quitarAtributo(){
     itemEspecial.removeAttribute("class");
+}
+
+//Eliminar el ulitmo elemento de la lita
+function eliminarUlitmoElemento(){
+    //list.removeChild(listItem[listItem.length-1]);
+    list.removeChild(list.lastElementChild);
+}
+
+//Eliminar el primer elemento de la lita
+function eliminarPrimerElemento(){
+    //list.removeChild(listItem[0]);
+    list.removeChild(list.firstElementChild);
+}
+
+//Crear un elemento e insertarlo
+function crearElemento(){
+    contenedor.innerHTML = `
+    
+    `
 }
 
