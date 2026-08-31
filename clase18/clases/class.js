@@ -1,7 +1,6 @@
-
- const list = document.querySelector(".lista-desordenada");
+const list = document.querySelector(".lista-desordenada");
 const listItem = document.getElementsByClassName("list-item");
- const texto = document.querySelector(".texto");
+const texto = document.querySelector(".texto");
 const contenedor = document.querySelector(".contenedor-magico");
 const itemEspecial = document.getElementById("item-especial");
 const ogText = itemEspecial.textContent;
@@ -60,7 +59,11 @@ function eliminarPrimerElemento(){
 //Crear un elemento e insertarlo
 function crearElemento(){
     contenedor.innerHTML = `
-    
+    <ul>
+        <li> <h1> Soy un li magico </h1> </li>
+        <li> <p class="verde"> Soy un li magico 2 </p> </li>
+        <li> <span> Soy un li magico 3 </span> </li>
+    </ul>
     `
 }
 
