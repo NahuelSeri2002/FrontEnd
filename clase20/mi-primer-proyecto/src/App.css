@@ -48,13 +48,13 @@ h1 {
   font-size: 14px;
 }
 
-#lista-tareas {
+.lista-tareas {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-#lista-tareas li {
+.lista-tareas li {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,12 +63,12 @@ h1 {
   cursor: pointer;
 }
 
-#lista-tareas li.completada small {
+.lista-tareas li.completada {
   text-decoration: line-through;
   color: #999;
 }
 
-#lista-tareas li button.tarea-eliminar {
+.lista-tareas li button.tarea-eliminar {
   border: none;
   background: transparent;
   color: #dc3545;
