@@ -71,7 +71,7 @@ Un **framework** "todo incluido" (por ejemplo Angular) ya viene con esas piezas 
 
 ---
 
-## 4. Vite y el scaffolding de un proyecto
+## 4. Vite y el scaffolding de un proyectok
 
 **Scaffolding (andamiaje):** una estructura de carpetas y configuración ya armada de antemano, para no tener que conectar bundler + servidor + compilador a mano cada vez que arrancás un proyecto. Antes se usaba `create-react-app` (hoy discontinuado, mucho más lento); hoy el estándar es **Vite**.
 
