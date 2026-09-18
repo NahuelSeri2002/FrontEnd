@@ -4,12 +4,144 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding: 16px;
 }
 
 h1 {
   margin: 0;
   font-size: 20px;
   text-align: center;
+}
+
+.header-principal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-principal {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-principal a {
+  color: #4361ee;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.nav-principal a:hover {
+  text-decoration: underline;
+}
+
+.sesion {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+
+.sesion button {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.form-login {
+  display: flex;
+  gap: 6px;
+}
+
+.form-login input {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 12px;
+  width: 110px;
+}
+
+.boton-tema {
+  white-space: nowrap;
+}
+
+.aviso-sesion {
+  padding: 12px;
+  background: #f4f5f7;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #555;
+  text-align: center;
+}
+
+/* ---------- Modo oscuro (ThemeContext) ---------- */
+
+.app.dark {
+  background: #1a1b1e;
+  color: #eaeaea;
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.app.dark .tarjeta,
+.app.dark .cargando,
+.app.dark .error-mensaje {
+  background: #25262b;
+  color: #eaeaea;
+  box-shadow: none;
+}
+
+.app.dark .formulario-personaje,
+.app.dark .tarjeta-personaje,
+.app.dark .aviso-sesion {
+  background: #2c2d31;
+  color: #eaeaea;
+}
+
+.app.dark .formulario-personaje input,
+.app.dark .formulario-personaje select,
+.app.dark .form-login input {
+  background: #1a1b1e;
+  color: #eaeaea;
+  border-color: #444;
+}
+
+.app.dark .sesion button,
+.app.dark .boton-secundario {
+  background: #2c2d31 !important;
+  color: #eaeaea !important;
+  border-color: #444 !important;
+}
+
+.index {
+  text-align: center;
+}
+
+.index p {
+  color: #555;
+  font-size: 14px;
+  line-height: 1.5;
+  max-width: 46ch;
+  margin: 12px auto 20px;
+}
+
+.boton-link {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background: #4361ee;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.boton-link:hover {
+  background: #364fc7;
 }
 
 .tarjeta {
@@ -190,6 +322,14 @@ h2 {
   overflow: hidden;
   text-align: center;
   padding-bottom: 10px;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.1s ease;
+}
+
+.tarjeta-personaje:hover {
+  transform: translateY(-2px);
 }
 
 .tarjeta-personaje img {
@@ -226,25 +366,67 @@ h2 {
 .estado-dead::before { content: "● "; color: #dc3545; }
 .estado-unknown::before { content: "● "; color: #adb5bd; }
 
-.tarjeta-personaje-acciones {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 0 8px;
-}
-
-.tarjeta-personaje-acciones button {
-  padding: 6px 8px;
-  border: none;
-  border-radius: 6px;
-  background: #fff;
-  color: #4361ee;
-  border: 1px solid #4361ee;
-  cursor: pointer;
-  font-size: 11px;
-}
-
 .boton-eliminar {
   color: #dc3545 !important;
   border-color: #dc3545 !important;
+}
+
+/* ---------- Página de detalle ---------- */
+
+.detalle-personaje {
+  text-align: center;
+}
+
+.boton-volver {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border: none;
+  background: transparent;
+  color: #4361ee;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.detalle-imagen {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 12px;
+  display: block;
+}
+
+.avatar-grande {
+  width: 140px;
+  height: 140px;
+  font-size: 48px;
+  margin: 0 auto 12px;
+}
+
+.detalle-acciones {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.detalle-acciones button {
+  padding: 8px 16px;
+  border: 1px solid #4361ee;
+  border-radius: 6px;
+  background: #fff;
+  color: #4361ee;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+/* ---------- Página 404 ---------- */
+
+.pagina-error {
+  text-align: center;
+}
+
+.pagina-error a {
+  color: #4361ee;
 }

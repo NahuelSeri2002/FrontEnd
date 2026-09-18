@@ -1,4 +1,4 @@
-//import { useEffect } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 
 // O -> de solid el uso de constantes
@@ -11,31 +11,32 @@ const FORM_VACIO = {
 };
 
 // Esto es un ENUM
-const ESTADOS = ["Alive", "Dead", "unknown"];
+const ESTADOS = ["Alive", "Dead", "unknown"]
 
 // Este componente tiene la responsabilidad de reunir la informacion para crear el registro
 // no tiene la responsabilidad de enviar los datos
 function FormularioPersonaje({
-  //   personajeEnEdicion,
-  onCrear,
-  //   onCancelar,
+personajeEnEdicion,
+onCrear,
+onCancelar,
+onActualizar,
 }) {
   const [form, setForm] = useState(FORM_VACIO);
   const [enviando, setEnviando] = useState(false);
 
   // va a manejar los cambios en el personajeEnEdicion
-  //   useEffect(() => {
-  //     if (personajeEnEdicion) {
-  //       setForm({
-  //         name: personajeEnEdicion.name,
-  //         species: personajeEnEdicion.species,
-  //         status: personajeEnEdicion.status,
-  //         image: personajeEnEdicion.image || "",
-  //       });
-  //     } else {
-  //       setForm(FORM_VACIO);
-  //     }
-  //   }, [personajeEnEdicion]);
+  useEffect(() => {
+    if (personajeEnEdicion) {
+      setForm({
+        name: personajeEnEdicion.name,
+        species: personajeEnEdicion.species,
+        status: personajeEnEdicion.status,
+        image: personajeEnEdicion.image || "",
+      });
+    } else {
+      setForm(FORM_VACIO);
+    }
+  }, [personajeEnEdicion]);
 
   // Usa los atributos name y value
   // para saber que parte del objeto form actualizar
@@ -47,20 +48,24 @@ function FormularioPersonaje({
   };
 
   const handleSubmit = async (evento) => {
-    evento.preventDefault();
-    if (form.name.trim() === "" || form.species.trim() === "") return;
+    evento.preventDefault()
+    if(form.name.trim() === "" || form.species.trim() === "") return;
 
-    setEnviando(true);
-    // await genera una pausa, manda la informacion y espera una respuesta
-    await onCrear(form);
-    // hasta que no responda la api no setea el formulario ni el enviando
-    setForm(FORM_VACIO);
-    setEnviando(false);
+    setEnviando(true)
+    if(personajeEnEdicion){
+      await onActualizar(personajeEnEdicion.id, form)
+    } else {
+      // await genera una pausa, manda la informacion y espera una respuesta
+      await onCrear(form)
+      // hasta que no responda la api no setea el formulario ni el enviando
+      setForm(FORM_VACIO)
+    }
+    setEnviando(false)
   };
 
   return (
     <form onSubmit={handleSubmit} className="formulario-personaje">
-      <h3> Creando personaje </h3>
+      <h3> {personajeEnEdicion ? `Editando a ${personajeEnEdicion.name}` : "Creando personaje"} </h3>
       <div className="campo">
         <label htmlFor="name">Nombre</label>
         <input
@@ -91,26 +96,21 @@ function FormularioPersonaje({
       <div className="campo">
         <label htmlFor="status">Estado</label>
         <select name="status" id="status">
-          {ESTADOS.map((estado) => (
-            // a pesar de que "estado" sea string puede ser key ya que es unico y no hay dos estados iguales. el requisito principal es que el dato sea unico e irrepetible sin importar su tipo
-            <option key={estado} value={estado}>
-              {estado}
-            </option>
-          ))}
+            {ESTADOS.map((estado) => (
+                // a pesar de que "estado" sea string puede ser key ya que es unico y no hay dos estados iguales. el requisito principal es que el dato sea unico e irrepetible sin importar su tipo
+          <option key={estado} value={estado}>
+            {estado}
+          </option>
+            ))}
         </select>
       </div>
 
       <div className="campo campo-ancho">
         <label htmlFor="image">URL de la foto (opcional)</label>
-        <input
-          type="url"
-          id="image"
-          name="image"
-          placeholder="Https://..."
-          value={form.image}
+        <input type="url" id="image" name="image" placeholder="Https://..."
+        value={form.image}
           // El input modifica al estado a traves de eventos
-          onChange={manejarCambios}
-        />
+          onChange={manejarCambios} />
       </div>
 
       {/* Tarjeta que se escribe sola: React redibuja esto en cada tecla
@@ -120,27 +120,25 @@ function FormularioPersonaje({
         {form.image ? (
           <img src={form.image} alt="" className="tarjeta-preview-imagen" />
         ) : (
-          <div className="tarjeta-preview-avatar">
-            {(form.name || "?").charAt(0)}
-          </div>
+          <div className="tarjeta-preview-avatar">{(form.name || "?").charAt(0)}</div>
         )}
         <span className={`estado estado-${form.status.toLowerCase()}`}>
           {form.name || "Nombre..."} · {form.species || "Especie..."}
         </span>
       </div>
 
-      <div className="formulario-botones">
-        {/* // si disabled está en true no podes clickear el botón */}
+        <div className="formulario-botones" >
+            {/* // si disabled está en true no podes clickear el botón */}
         <button type="submit" disabled={enviando}>
-          Crear personaje
+          {enviando ? "Guardando..." : personajeEnEdicion ? "Guardar cambios" : "Crear personaje"}
         </button>
-        {/* {personajeEnEdicion && (
-           
+        {personajeEnEdicion && (
             <button className="botón-secundario" onClick={onCancelar} type="button" >
                 Cancelar
             </button>
-        )} */}
-      </div>
+        )}
+        </div>
+
     </form>
   );
 }
