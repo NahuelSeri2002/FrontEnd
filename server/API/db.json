@@ -2341,5 +2341,13 @@
       "image": "https://images.wikidexcdn.net/mwuploads/esssbwiki/thumb/c/cb/latest/20220530212008/Mario_Mario_Party_Superstars.png/800px-Mario_Mario_Party_Superstars.png",
       "id": 101
     }
+  ],
+  "users":[
+    {
+      "id": 1,
+      "name": "Demo",
+      "email": "demo@utn.edu",
+      "password": "1234"
+    }
   ]
 }

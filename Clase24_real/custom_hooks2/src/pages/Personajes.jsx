@@ -5,8 +5,10 @@ import FormularioPersonaje from "../components/FormularioPersonaje";
 import useActualizarPersonaje from "../hooks/useActualizarPersonaje";
 import useEliminarPersonaje from "../hooks/useEliminarPersonaje";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 function Personajes() {
+  const {usuario} = useAuth()
   const [personajeEnEdicion, setPersonajeEnEdicion] = useState(null);
   const { error, loading, personajes, setPersonajes, fetchPersonajes } =
     useFetchPersonajes();
